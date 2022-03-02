@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { Spinner } from 'react-bootstrap';
 
 class Produits extends Component{
     constructor(props) {
@@ -9,7 +9,7 @@ class Produits extends Component{
         console.log(this.props)
         if(this.props.loading) {
             return(
-                <h2>Loading ...</h2>
+                <Spinner animation="border" variant="info" />
             )
         }
         return(

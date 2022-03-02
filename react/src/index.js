@@ -7,6 +7,7 @@ import { BrowserRouter,
          Route,
          Routes
 } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Root extends Component{
@@ -20,12 +21,14 @@ class Root extends Component{
   }
 
   async componentDidMount () {
+    setTimeout(async () => {
     const response = await fetch('http://localhost:1337/api/Articles', {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
     const articles = await response.json()
     this.setState({
       articles:articles,
       loading:false
     });
+    }, 2000);
   }
 
   render(){
