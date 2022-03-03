@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import './index.css';
-import App from './App';
-import Produits from './components/Produits';
+import './style.css';
+import App from './app';
+import Produits from './components/produits';
 import { BrowserRouter,
          Route,
          Routes
 } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TopMenu from './components/top_menu';
 
 
 class Root extends Component{
@@ -20,7 +23,7 @@ class Root extends Component{
   }
 
   async componentDidMount () {
-    const response = await fetch('http://localhost:1337/api/Articles', {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
+    const response = await fetch('http://localhost:8080/api/Articles', {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
     const articles = await response.json()
     this.setState({
       articles:articles,
@@ -30,12 +33,16 @@ class Root extends Component{
 
   render(){
     return(
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<App />} />
-          <Route exact path="/produits" element={<Produits articles={this.state.articles.data} loading={this.state.loading} />} />
-        </Routes>
-      </BrowserRouter>
+      <>
+        <BrowserRouter>
+          <TopMenu/>
+          <Routes>
+            <Route exact path="/" element={<App />} />
+            <Route exact path="/produits" element={<Produits articles={this.state.articles.data} loading={this.state.loading} />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+     
     );
   }
 }
