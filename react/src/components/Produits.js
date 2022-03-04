@@ -36,25 +36,24 @@ import {
                         
                     </Col>
                     <Col xs={12} md={8} className="products-list-container" >
-                        <Row>
+                        <Row className="justify-content-md-center">
                             {
                                 this.props.articles && this.props.articles.map((article,i) =>{
                                     return(
-                                    <>
-                                        <Col xs={6} md={2}>
-                                            <Card className="product-card">
-                                                <Card.Img variant="top" src="holder.js/100px180" />
+                                        <Col xs={{span: 10, offset: 1}} md={{span: 6, offset: 0}} lg={3}>
+                                            <Card key={i} className="product-card">
+                                                <Card.Img variant="top" src={"http://localhost:1337" + article.attributes.preview_photo.data.attributes.url} />
                                                 <Card.Body>
-                                                    <Card.Title key={i}>{article.attributes.name}</Card.Title>
-                                                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                                                    <Card.Title>{article.attributes.name}</Card.Title>
+                                                    <Card.Subtitle className="mb-2 text-muted">{article.attributes.prix + "€"}</Card.Subtitle>
                                                     <Card.Text>
+                                                        {"Date de parution :\n" + article.attributes.publishedAt.substring(0,10)}
                                                     </Card.Text>
-                                                    <Button variant="primary">Go somewhere</Button>
+                                                    <Button variant="primary">Détails de l'article</Button>
+                                                    <Button onClick={() => this.props.AddToPanier(article)} variant="success">Ajouter au panier</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
-                                    </>
-                                        
                                     );
                                 })
                             }

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "articles",
+  "collectionName": "marques",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "articles",
+    "singularName": "marque",
+    "pluralName": "marques",
+    "displayName": "Marques",
     "description": ""
   },
   "options": {
@@ -12,22 +12,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "preview_photo": {
+    "name": {
+      "type": "string"
+    },
+    "nationalite": {
+      "type": "string"
+    },
+    "logo": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ]
-    },
-    "name": {
-      "type": "string"
-    },
-    "prix": {
-      "type": "integer"
     }
   }
 }

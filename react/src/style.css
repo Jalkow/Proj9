@@ -1,5 +1,5 @@
 #root {
-  background-color: #282c34;
+  background-color: #1a1c21;
   color: white;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
@@ -29,12 +29,12 @@
 
 .products-filters-container{
   background-color: #1a1c21;
-  height: 100vh;
+  padding-bottom: 5vh;
 }
 
 .products-list-container{
-  height: 100vh;
   background-color: #282c34;
+  padding-bottom: 5vh;
 }
 
 .products-list-container .spinner-border{
@@ -45,4 +45,8 @@
 .product-card{
   color: black;
   margin-top: 5vh;
+}
+
+.product-card .card-text{
+  font-size: 1.5rem !important;
 }

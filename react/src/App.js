@@ -5,7 +5,13 @@ class App extends Component{
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to my site</h1>
+        {
+          this.props.panier && this.props.panier.map((panier,i) =>{
+            return(
+              <h2 key={i}>{panier.attributes.name}</h2>
+            );
+          })
+        }
         </header>
       </div>
     );
