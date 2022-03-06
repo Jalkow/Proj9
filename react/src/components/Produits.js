@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import { Spinner, Container, Navbar, Nav, Col, Row, Card, Button } from 'react-bootstrap';
-import {
-    Link
-} from 'react-router-dom';
+import { Spinner, Container, Col, Row, Button } from 'react-bootstrap';
+import Produit_preview from './Produit_preview';
 
  class Produits extends Component{
     constructor(props) {
@@ -46,20 +44,7 @@ import {
                             {
                                 this.props.articles && this.props.articles.map((article,i) =>{
                                     return(
-                                        <Col xs={{span: 10, offset: 1}} md={{span: 6, offset: 0}} lg={3}>
-                                            <Card key={i} className="product-card">
-                                                <Card.Img variant="top" src={"http://localhost:8080" + article.attributes.preview_photo.data.attributes.url} />
-                                                <Card.Body>
-                                                    <Card.Title>{article.attributes.name}</Card.Title>
-                                                    <Card.Subtitle className="mb-2 text-muted">{article.attributes.prix + "€"}</Card.Subtitle>
-                                                    <Card.Text>
-                                                        {"Date de parution :\n" + article.attributes.publishedAt.substring(0,10)}
-                                                    </Card.Text>
-                                                    <Button as={Link} to= {"/produit_details"} state={{article:article}} variant="primary">Détails de l'article</Button>
-                                                    <Button onClick={() => this.props.AddToPanier(article)} variant="success">Ajouter au panier</Button>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
+                                        <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
                                     );
                                 })
                             }
