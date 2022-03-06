@@ -27,7 +27,7 @@
       "type": "string"
     },
     "prix": {
-      "type": "integer"
+      "type": "decimal"
     }
   }
 }

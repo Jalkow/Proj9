@@ -12,6 +12,7 @@
 .navbar-brand img{
   height: 5rem;
   width: 5rem;
+  margin-left: 10px;
 }
 
 .navbar .nav-link{
@@ -21,6 +22,24 @@
 
 .navbar .nav-link:hover{
   color: grey !important;
+}
+
+.navbar-toggler{
+  font-size: 2rem;
+}
+
+.dropdown-menu{
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.dropdown-menu img{
+  width: 100%;
+  max-height: 5vh;
+}
+
+#panier_dropdown_prix_total, #panier_dropdown_toptext{
+  font-weight: bold
 }
 
 #products-content{
@@ -38,8 +57,10 @@
 }
 
 .products-list-container .spinner-border{
-  height: 5rem !important;
-  width: 5rem !important;
+  height: 10rem !important;
+  width: 10rem !important;
+  margin-top: 50vh;
+  margin-bottom: 50vh;
 }
 
 .product-card{

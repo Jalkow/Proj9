@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Navbar, Button, Nav, Form, FormControl, NavDropdown} from 'react-bootstrap';
+import {Navbar, Button, Nav, Form, FormControl, NavDropdown, Dropdown} from 'react-bootstrap';
 import {
     Link
 } from 'react-router-dom';
 import logo from "../img/bibouroi_logo.jpg";
-import panier_icon from "../img/panier-icon.jpg";
 import { BsFillBasketFill } from "react-icons/bs";
 
 class TopMenu extends Component{
@@ -26,11 +25,28 @@ class TopMenu extends Component{
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                     </Nav>
                     <Form className="d-flex">
+                        <NavDropdown title={<BsFillBasketFill/>} id="basic-nav-dropdown">
+                            <Dropdown.ItemText id="panier_dropdown_toptext">Liste des articles :</Dropdown.ItemText>
+                            {
+                                this.props.dropdown_content && this.props.dropdown_content.map((article,i) =>{
+                                    return(
+                                        <>
+                                            <NavDropdown.Item key={i}>
+                                                <Dropdown.ItemText>{"Nom : " + article.attributes.name}</Dropdown.ItemText>
+                                                <Dropdown.ItemText>{"Prix : " + article.attributes.prix + "€"}</Dropdown.ItemText>
+                                                <img src={"http://localhost:8080" + article.attributes.preview_photo.data.attributes.url}></img>
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Divider/>
+                                        </>
+                                    );
+                                })
+                            }
+                            <Dropdown.ItemText id="panier_dropdown_prix_total">{"Prix total : " + this.props.total_prix_articles_panier + "€"}</Dropdown.ItemText>
+                            <Button as={Link} to="/commande" variant="success">Passer la commande</Button>
+                        </NavDropdown>
                         <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
                         <Button variant="outline-success">Search</Button>
-                        <NavDropdown title={<BsFillBasketFill/>} id="basic-nav-dropdown">
-
-                        </NavDropdown>
+                        
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
