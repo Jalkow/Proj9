@@ -45,7 +45,7 @@ class Root extends Component{
         <BrowserRouter>
           <TopMenu dropdown_content={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} RemFromPanier={this.RemFromPanier}/>
           <Routes>
-            <Route exact path="/" element={<App panier={this.state.panier} />} />
+            <Route exact path="/" element={<App panier={this.state.panier} AddToPanier={this.AddToPanier} />} />
             <Route exact path="/produits" element={<Produits AddToPanier={this.AddToPanier} />} /> 
             {/* <Route exact path="/produits/:category" element={() => {return( <Produits AddToPanier={this.AddToPanier} category={useParams().category} />) }} /> */}
             <Route exact path="/produits/:category" element={<this.Produits_category />} />

@@ -9,6 +9,17 @@ import Panier_TopMenu from './Panier_TopMenu';
 class TopMenu extends Component{
     constructor(props){
         super(props)
+        this.state={
+            search:""
+        }
+    }
+
+    handleChange = (e) => {
+        e.preventDefault();
+        let name = e.target.name
+        this.setState({
+            [name]: e.target.value
+        })
     }
 
     render() {
@@ -26,8 +37,8 @@ class TopMenu extends Component{
                     </Nav>
                     <Panier_TopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />
                     <Form className="d-flex">
-                        <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-                        <Button variant="outline-success">Search</Button>
+                        <FormControl type="search" name="search" value={this.state.search} onChange={(e) => this.handleChange(e)} placeholder="Search" className="me-2" aria-label="Search"/>
+                        <Button as={Link} to={"/produits/" + this.state.search} variant="outline-success">Search</Button>
                         
                     </Form>
                 </Navbar.Collapse>

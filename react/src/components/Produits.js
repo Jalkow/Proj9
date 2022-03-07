@@ -13,7 +13,7 @@ import Produit_preview from './Produit_preview';
       }
     }
 
-    async componentDidMount () {
+   async componentDidMount () {
         setTimeout(async () => {
         let url = 'http://localhost:8080/api/Articles?populate=*';
         if (this.props.category){
@@ -28,7 +28,7 @@ import Produit_preview from './Produit_preview';
             encodeValuesOnly: true,
             });
             url += '&' + query;
-        }
+        } 
 
         const response = await fetch(url, {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
         const articles = await response.json()
@@ -38,7 +38,6 @@ import Produit_preview from './Produit_preview';
           loading:false
         });
         }, 2000);
-        console.log(this.props);
     }
     
     render() {
@@ -75,7 +74,9 @@ import Produit_preview from './Produit_preview';
                             {
                                 this.state.articles.data && this.state.articles.data.map((article,i) =>{
                                     return(
-                                        <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
+                                        <Col xs={{span: 10, offset: 1}} md={{span: 6, offset: 0}} lg={3}>
+                                            <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
+                                        </Col>
                                     );
                                 })
                             }

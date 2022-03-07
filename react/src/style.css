@@ -43,6 +43,28 @@
   font-weight: bold
 }
 
+.home_content-container{
+  background-color: #282c34;
+  padding-bottom: 5vh;
+}
+
+.accueil_subtitle{
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-top: 5vh;
+}
+
+.carousel-item{
+  text-align: center;
+}
+
+.carousel-item .product-card{
+  margin-top: 0px;
+  text-align: start;
+  margin-bottom: 3vh;
+}
+
 #products-content{
   background-color: #1a1c21 !important;
 }
@@ -72,4 +94,8 @@
 
 .product-card .card-text{
   font-size: 1.5rem !important;
+}
+
+.product-card .card-img-top{
+  max-height: 25vh;
 }
