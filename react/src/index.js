@@ -28,13 +28,14 @@ class Root extends Component{
   AddToPanier = (article) =>{
     this.setState(prevState => ({
       panier: [...prevState.panier, article],
-      panier_total_price: this.state.panier_total_price + article.attributes.prix
+      panier_total_price: prevState.panier_total_price + article.attributes.prix
     }))
   }
 
   RemFromPanier = (index) =>{
+    let removed_article = this.state.panier.splice(index, 1)[0];
     this.setState(prevState => ({
-      panier: prevState.panier.splice(index)
+      panier_total_price: prevState.panier_total_price- removed_article.attributes.prix
     }))
   }
 

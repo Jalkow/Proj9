@@ -9,6 +9,7 @@ import Produit_preview from './Produit_preview';
             filteredArticles:[],
             articles:[],
             loading:true,
+            category:[],
       }
     }
 
@@ -33,6 +34,7 @@ import Produit_preview from './Produit_preview';
         const articles = await response.json()
         this.setState({
           articles:articles,
+          category:this.props.category,
           loading:false
         });
         }, 2000);
@@ -46,7 +48,7 @@ import Produit_preview from './Produit_preview';
                 <Container fluid>
                     <Row id="products-content">
                         <Col xs={12} md={2} className="products-filters-container">
-                        
+                            <Button variant="dark">Dark</Button>
                         </Col>
                         <Col xs={12} md={8} className="products-list-container" >
                             <Container fluid>
@@ -66,7 +68,7 @@ import Produit_preview from './Produit_preview';
             <Container fluid>
                 <Row id="products-content">
                     <Col xs={12} md={2} className="products-filters-container">
-                        
+                        <Button variant="dark">Dark</Button>
                     </Col>
                     <Col xs={12} md={8} className="products-list-container" >
                         <Row className="justify-content-md-center">

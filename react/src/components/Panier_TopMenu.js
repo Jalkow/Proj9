@@ -20,6 +20,7 @@ class Panier_TopMenu extends Component{
                                     <Dropdown.ItemText>{"Nom : " + article.attributes.name}</Dropdown.ItemText>
                                     <Dropdown.ItemText>{"Prix : " + article.attributes.prix + "€"}</Dropdown.ItemText>
                                     <img src={"http://localhost:8080" + article.attributes.preview_photo.data.attributes.url}></img>
+                                    <br></br>
                                     <Button variant="danger" onClick={() => this.props.RemFromPanier(i)} >Supprimer du panier</Button>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider/>

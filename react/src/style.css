@@ -31,11 +31,12 @@
 .dropdown-menu{
   max-height: 50vh;
   overflow-y: scroll;
+  text-align: center !important;
 }
 
 .dropdown-menu img{
   width: 100%;
-  max-height: 5vh;
+  max-height: 10vh;
 }
 
 #panier_dropdown_prix_total, #panier_dropdown_toptext{
@@ -49,6 +50,7 @@
 .products-filters-container{
   background-color: #1a1c21;
   padding-bottom: 5vh;
+  text-align: center;
 }
 
 .products-list-container{
