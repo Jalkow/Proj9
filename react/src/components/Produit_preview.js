@@ -14,7 +14,7 @@ function Produit_preview(props){
                         {"Date de parution :\n" + props.article.attributes.publishedAt.substring(0,10)}
                     </Card.Text>
                     <Button as={Link} to= {"/produit_details"} state={{article:props.article}} variant="primary">Détails de l'article</Button>
-                    <Button onClick={() => this.props.AddToPanier(props.article)} variant="success">Ajouter au panier</Button>
+                    <Button onClick={() => props.AddToPanier(props.article)} variant="success">Ajouter au panier</Button>
                 </Card.Body>
             </Card>
         </Col>

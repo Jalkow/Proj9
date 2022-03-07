@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "articles",
+    "displayName": "Articles",
     "description": ""
   },
   "options": {
@@ -28,6 +28,22 @@
     },
     "prix": {
       "type": "decimal"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "broderie",
+        "habit_fille",
+        "habit_garcon",
+        "habit_homme",
+        "habit_femme"
+      ],
+      "required": true
+    },
+    "marque": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::marque.marque"
     }
   }
 }
