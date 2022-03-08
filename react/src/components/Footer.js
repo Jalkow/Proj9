@@ -12,7 +12,7 @@ class Footer extends Component{
                     </Col>
                     <Col xs={12}>
                         <h2>Mentions légales :</h2>
-                        <p>Contact : dgehant@gaming.tech ou lvocanson@gaming.tech</p>
+                        <p>Contact : dgehant@gaming.tech ou lventurini@gaming.tech</p>
                         <p>Adresse : 16 Rue de l'Université, 69007 Lyon</p>
                     </Col>
                 </Row>    

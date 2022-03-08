@@ -44,6 +44,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::marque.marque"
+    },
+    "reduction": {
+      "type": "integer",
+      "min": 0,
+      "max": 99
+    },
+    "numb_time_bought": {
+      "type": "integer",
+      "default": 0
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

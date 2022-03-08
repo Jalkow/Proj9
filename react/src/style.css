@@ -57,16 +57,20 @@
   font-size: 1.5rem;
 }
 
-.home_content-container{
+.carousel_container{
   background-color: #282c34;
+}
+
+.carousel_container .slide{
   padding-bottom: 5vh;
 }
 
 .accueil_subtitle{
   text-align: center;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-top: 5vh;
+  margin-bottom: 2vh;
 }
 
 .carousel-item{
@@ -101,15 +105,19 @@
   margin-bottom: 50vh;
 }
 
-.product-card{
+.info-card{
   color: black;
   margin-top: 5vh;
 }
 
-.product-card .card-text{
+.info-card .card-text{
   font-size: 1.5rem !important;
 }
 
-.product-card .card-img-top{
+.info-card .card-img-top{
   max-height: 25vh;
+}
+
+.info-card .marque-text .card-title{
+  font-size: 2.5rem !important
 }

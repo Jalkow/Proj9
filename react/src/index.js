@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import './index.css';
 import './style.css';
-import App from './App';
+import Home from './Home';
 import Produits from './components/Produits';
 import Commande from './components/Commande';
 import Produit_details from './components/Produit_details';
@@ -29,14 +29,14 @@ class Root extends Component{
   AddToPanier = (article) =>{
     this.setState(prevState => ({
       panier: [...prevState.panier, article],
-      panier_total_price: prevState.panier_total_price + article.attributes.prix
+      panier_total_price: prevState.panier_total_price + (article.attributes.prix - (article.attributes.prix/100 * article.attributes.reduction))
     }))
   }
 
   RemFromPanier = (index) =>{
     let removed_article = this.state.panier.splice(index, 1)[0];
     this.setState(prevState => ({
-      panier_total_price: prevState.panier_total_price- removed_article.attributes.prix
+      panier_total_price: prevState.panier_total_price- (removed_article.attributes.prix - (removed_article.attributes.prix/100 * removed_article.attributes.reduction))
     }))
   }
 
@@ -46,7 +46,7 @@ class Root extends Component{
         <BrowserRouter>
           <TopMenu dropdown_content={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} RemFromPanier={this.RemFromPanier}/>
           <Routes>
-            <Route exact path="/" element={<App panier={this.state.panier} AddToPanier={this.AddToPanier} />} />
+            <Route exact path="/" element={<Home panier={this.state.panier} AddToPanier={this.AddToPanier} />} />
             <Route exact path="/produits" element={<Produits AddToPanier={this.AddToPanier} />} /> 
             {/* <Route exact path="/produits/:category" element={() => {return( <Produits AddToPanier={this.AddToPanier} category={useParams().category} />) }} /> */}
             <Route exact path="/produits/:category" element={<this.Produits_category />} />
