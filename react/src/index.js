@@ -13,6 +13,7 @@ import { BrowserRouter,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopMenu from './components/Top_menu';
+import Footer from './components/Footer';
 
 
 class Root extends Component{
@@ -52,6 +53,7 @@ class Root extends Component{
             <Route exact path="/produit_details" element={<Produit_details />}/>
             <Route exact path="/commande" element={<Commande panier={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </>
      
