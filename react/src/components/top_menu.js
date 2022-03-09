@@ -32,11 +32,12 @@ class TopMenu extends Component{
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto my-2 my-lg-0">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/produits">Produits</Nav.Link>
                         <NavDropdown title="Produits" id="produits_dropdown">
-                            <Dropdown.Item as={Link} to="/produits/broderie">Broderie</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/produits/habit_homme">Habits homme</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/produits">Tous</Dropdown.Item>
                             <NavDropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/produits/broderie">Broderies</Dropdown.Item>
+                            <NavDropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/produits/habit_homme">Habits homme </Dropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Panier_TopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />

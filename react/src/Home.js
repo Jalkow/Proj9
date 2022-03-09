@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Carousel} from 'react-bootstrap';
+import Carousel_articles from './components/Carousel_articles';
+import Carousel_marques from './components/Carousel_marques';
 import Marque_infos from './components/Marque_infos';
 import Produit_preview from './components/Produit_preview';
 
@@ -85,80 +87,24 @@ class Home extends Component{
         <Row className="justify-content-center">
           <Col md={12} lg={4} className="carousel_container">
             <h2 className="accueil_subtitle">Nos articles les plus récents :</h2>
-            <Carousel interval={null}>
-            {
-              this.state.latest_articles.data && this.state.latest_articles.data.map((article,i) =>{
-                return(
-                  <Carousel.Item>
-                    <Row className="justify-content-center">
-                      <Col xs={8}>
-                        <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
-                      </Col>
-                    </Row>
-                  </Carousel.Item>
-                );
-              })
-            }
-            </Carousel>
+            <Carousel_articles articles={this.state.latest_articles.data} AddToPanier={this.props.AddToPanier} />
           </Col>
 
           <Col md={12} lg={4} className="carousel_container">
             <h2 className="accueil_subtitle">Nos meilleures promos :</h2>
-            <Carousel interval={null}>
-            {
-              this.state.most_discounted_articles.data && this.state.most_discounted_articles.data.map((article,i) =>{
-                return(
-                  <Carousel.Item>
-                    <Row className="justify-content-center">
-                      <Col xs={8}>
-                        <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
-                      </Col>
-                    </Row>
-                  </Carousel.Item>
-                );
-              })
-            }
-            </Carousel>
+            <Carousel_articles articles={this.state.most_discounted_articles.data} AddToPanier={this.props.AddToPanier}/>
           </Col>
         </Row>
         <Container>
           <Row className="justify-content-center">
           <Col md={12} lg={6} className="carousel_container">
             <h2 className="accueil_subtitle">Nos articles les plus achetés :</h2>
-            <Carousel interval={null}>
-            {
-              this.state.most_bought_articles.data && this.state.most_bought_articles.data.map((article,i) =>{
-                return(
-                  <Carousel.Item>
-                    <Row className="justify-content-center">
-                      <Col xs={8}>
-                        <Produit_preview key={i} article={article} AddToPanier={this.props.AddToPanier} />
-                      </Col>
-                    </Row>
-                  </Carousel.Item>
-                );
-              })
-            }
-            </Carousel>
+            <Carousel_articles articles={this.state.most_bought_articles.data} AddToPanier={this.props.AddToPanier}/>
           </Col>
 
           <Col md={12} lg={6} className="carousel_container">
             <h2 className="accueil_subtitle">Marques disponibles :</h2>
-            <Carousel interval={null}>
-            {
-              this.state.marques.data && this.state.marques.data.map((marque,i) =>{
-                return(
-                  <Carousel.Item>
-                    <Row className="justify-content-center">
-                      <Col xs={8}>
-                        <Marque_infos key={i} marque={marque} />
-                      </Col>
-                    </Row>
-                  </Carousel.Item>
-                );
-              })
-            }
-            </Carousel>
+            <Carousel_marques marques={this.state.marques.data} />
           </Col>
         </Row>
         </Container>

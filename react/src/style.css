@@ -108,6 +108,7 @@
 .info-card{
   color: black;
   margin-top: 5vh;
+  text-align: center;
 }
 
 .info-card .card-text{
@@ -129,9 +130,61 @@
 
 .product-details-title{
   font-size: 4rem;
+  text-align: center;
 }
 
 .product-details-infos{
   font-size: 3rem;
   margin-top: 2vh;
+  text-align: center;
+}
+
+.images-carousel{
+  padding-bottom: 5vh;
+}
+
+.images-carousel img{
+  max-height: 50vh;
+  max-width: 30vw;
+}
+
+.product-details-description{
+  font-size: 20px;
+}
+
+.details-add-button{
+  margin-top: 10vh !important;
+  margin-bottom: 5vh !important;
+  height: 10vh;
+  width: 15vw !important;
+}
+
+.commande-articles-container{
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
+.commande-article-text{
+  text-align: center;
+  font-size: 1.5rem;
+  color: white !important;
+}
+
+.commande-article-img{
+  max-height: 30vh;
+}
+
+@media screen and (max-width: 992px){
+
+  .images-carousel{
+    margin-top: 5vh;
+  }
+
+  .images-carousel img{
+    max-width: 65vw;
+  }
+
+  .details-add-button{
+    width: 50vw !important;
+  }
 }

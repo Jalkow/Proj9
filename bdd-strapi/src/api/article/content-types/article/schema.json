@@ -56,6 +56,17 @@
     },
     "description": {
       "type": "text"
+    },
+    "details_images": {
+      "allowedTypes": [
+        "files",
+        "videos",
+        "audios",
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
     }
   }
 }

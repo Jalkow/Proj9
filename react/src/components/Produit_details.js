@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner, Button } from 'react-bootstrap';
+import Carousel_images from './Carousel_images';
 import Marque_infos from './Marque_infos';
 
 class Produit_details extends Component{
@@ -72,22 +73,38 @@ class Produit_details extends Component{
             )
         }
         else{
-            console.log(this.state.marque)
             let text_prix = this.state.article.attributes.prix - (this.state.article.attributes.prix/100 * this.state.article.attributes.reduction) + "€"; // prix après réduction
             if(this.state.article.attributes.reduction !== 0){
                 text_prix += " (" + this.state.article.attributes.prix + "€ mais avec " + this.state.article.attributes.reduction + "% de reduction)"
             }
             return(
                 <Container fluid>
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-center">
                         <Col xs={12} md={10} className="product-details-container">
                             <Row>
                                 <Col xs={12} lg={6}>
                                     <h2 className="product-details-title">{this.state.article.attributes.name + " (acheté " + this.state.article.attributes.numb_time_bought + " fois)"}</h2>
                                     <h3 className="product-details-infos">{"prix : " + text_prix}</h3>
-                                    <h3 className="product-details-infos">{"categorie : " + this.state.article.attributes.category}</h3>
-                                    <Marque_infos marque={this.state.marque}/>
+                                    <h3 className="product-details-infos">{"catégorie : " + this.state.article.attributes.category}</h3>
+                                    <br></br>
+                                    <Row className="justify-content-center">
+                                        <Col xs={12}>
+                                            <h2 className="product-details-title">Marque :</h2>
+                                        </Col>
+                                        <Col xs={12} md={6}>
+                                            <Marque_infos marque={this.state.marque}/>
+                                        </Col>
+                                    </Row>
                                 </Col>
+                                <Col xs={12} lg={6}>
+                                    <h2 className="product-details-title">Aperçus de l'article</h2>
+                                    <Carousel_images images={this.state.article.attributes.details_images.data} />
+                                    <h3 className="product-details-infos">Description :</h3>
+                                    <p class="product-details-description">{this.state.article.attributes.description}</p>
+                                </Col>
+                            </Row>
+                            <Row className="justify-content-center">
+                                <Button className="details-add-button" onClick={() => this.props.AddToPanier(this.state.article)} variant="success">Ajouter au panier</Button>
                             </Row>
                         </Col>
                     </Row>

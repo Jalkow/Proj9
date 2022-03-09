@@ -8,7 +8,7 @@ function Marque_infos(props){
             <Card.Body className="marque-text">
                 <br></br>
                 <Card.Title>{props.marque.attributes.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.marque.attributes.nationalite}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{"marque " + props.marque.attributes.nationalite}</Card.Subtitle>
             </Card.Body>
         </Card>
     );
