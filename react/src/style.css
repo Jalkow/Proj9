@@ -121,3 +121,17 @@
 .info-card .marque-text .card-title{
   font-size: 2.5rem !important
 }
+
+.product-details-container{
+  background-color: #282c34;
+  margin-top: 5vh !important;
+}
+
+.product-details-title{
+  font-size: 4rem;
+}
+
+.product-details-infos{
+  font-size: 3rem;
+  margin-top: 2vh;
+}

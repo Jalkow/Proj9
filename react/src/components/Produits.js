@@ -9,7 +9,6 @@ import Produit_preview from './Produit_preview';
             filteredArticles:[],
             articles:[],
             loading:true,
-            category:[],
       }
     }
 
@@ -34,10 +33,38 @@ import Produit_preview from './Produit_preview';
         const articles = await response.json()
         this.setState({
           articles:articles,
-          category:this.props.category,
           loading:false
         });
         }, 2000);
+    }
+
+    
+    async componentWillReceiveProps (nextProps) {
+        if (nextProps.category == this.props.category){
+            return;   
+        }
+
+        let url = 'http://localhost:8080/api/Articles?populate=*';
+        if (nextProps.category){
+            const qs = require('qs');
+            const query = qs.stringify({
+            filters: {
+                category: {
+                $eq: nextProps.category
+                },
+            },
+            }, {
+            encodeValuesOnly: true,
+            });
+            url += '&' + query;
+        } 
+
+        const response = await fetch(url, {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
+        const articles = await response.json()
+        this.setState({
+          articles:articles,
+          loading:false
+        });
     }
     
     render() {

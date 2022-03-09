@@ -33,6 +33,11 @@ class TopMenu extends Component{
                     <Nav className="me-auto my-2 my-lg-0">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/produits">Produits</Nav.Link>
+                        <NavDropdown title="Produits" id="produits_dropdown">
+                            <Dropdown.Item as={Link} to="/produits/broderie">Broderie</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/produits/habit_homme">Habits homme</Dropdown.Item>
+                            <NavDropdown.Divider/>
+                        </NavDropdown>
                     </Nav>
                     <Panier_TopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />
                     <Form className="d-flex">

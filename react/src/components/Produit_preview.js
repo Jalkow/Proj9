@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Produit_preview(props){
     let text_prix = props.article.attributes.prix - (props.article.attributes.prix/100 * props.article.attributes.reduction) + "€"; // prix après réduction
-    if(props.article.attributes.reduction != 0){
+    if(props.article.attributes.reduction !== 0){
         text_prix += " (" + props.article.attributes.prix + "€ avec " + props.article.attributes.reduction + "% de reduction)"
     }
 
@@ -17,7 +17,7 @@ function Produit_preview(props){
                 <Card.Text>
                     {"Date de parution :\n" + props.article.attributes.publishedAt.substring(0,10)}
                 </Card.Text>
-                <Button as={Link} to= {"/produit_details"} state={{article:props.article}} variant="primary">Détails de l'article</Button>
+                <Button as={Link} to= {"/produit_details/" + props.article.id} variant="primary">Détails de l'article</Button>
                 <Button onClick={() => props.AddToPanier(props.article)} variant="success">Ajouter au panier</Button>
             </Card.Body>
         </Card>

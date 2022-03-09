@@ -79,6 +79,7 @@ class Home extends Component{
   }
 
   render() {
+    console.log(this.state.marques)
     return (
       <Container fluid className="home_content-container">
         <Row className="justify-content-center">
@@ -102,7 +103,7 @@ class Home extends Component{
           </Col>
 
           <Col md={12} lg={4} className="carousel_container">
-            <h2 className="accueil_subtitle">Nos plus grosses réductions :</h2>
+            <h2 className="accueil_subtitle">Nos meilleures promos :</h2>
             <Carousel interval={null}>
             {
               this.state.most_discounted_articles.data && this.state.most_discounted_articles.data.map((article,i) =>{
