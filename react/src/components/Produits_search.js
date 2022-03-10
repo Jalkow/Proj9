@@ -3,16 +3,15 @@ import { Spinner, Container, Col, Row, Button, Modal } from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
 import Produit_preview from './Produit_preview';
 
-
 class Produits_search extends Component{
     constructor(props) {
-        super(props)
-        this.state={
-              filteredArticles:[],
-              articles:[],
-              loading:true,
-        }
-    }    
+      super(props)
+      this.state={
+            filteredArticles:[],
+            articles:[],
+            loading:true,
+      }
+    }
 
     setArticlesToDisplay = async(search) =>{
         let url = strapi_host_url + "/api/Articles?populate=*";
@@ -43,15 +42,13 @@ class Produits_search extends Component{
                     ],
                 },
             }, {
-                encodeValuesOnly: true,
+            encodeValuesOnly: true,
             });
             url += '&' + query;
         } 
-        console.log(search)
 
         const response = await fetch(url, {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
         const articles = await response.json()
-        console.log(articles)
         this.setState({
           articles:articles,
           filteredArticles:articles.data,
@@ -59,10 +56,31 @@ class Produits_search extends Component{
         });
     }
 
+
+    filterArticles = (value, condition) =>{
+        if(condition === "BIGGERPRICE"){
+            this.setState({
+                filteredArticles: this.state.articles.data.filter(article => (article.attributes.prix - (article.attributes.prix/100 * article.attributes.reduction)) > value),
+            })
+        }
+        else if(condition === "SMALLERPRICE"){
+            this.setState({
+                filteredArticles: this.state.articles.data.filter(article => (article.attributes.prix - (article.attributes.prix/100 * article.attributes.reduction)) < value),
+            })
+        }
+
+        else if(condition === "BIGGERREDUCTION"){
+            this.setState({
+                filteredArticles: this.state.articles.data.filter(article => article.attributes.reduction > value),
+            })
+        }
+    }
+
     async componentDidMount () {
         this.setArticlesToDisplay(this.props.search);
     }
 
+    
     async componentWillReceiveProps (nextProps) {
         if(nextProps.search === this.props.search){
             return;
@@ -70,8 +88,8 @@ class Produits_search extends Component{
         this.setArticlesToDisplay(nextProps.search);
     }
     
-
     render() {
+            
         if(this.state.loading) {
             return(
                 <Container fluid>
@@ -121,7 +139,7 @@ class Produits_search extends Component{
                                 this.state.filteredArticles && this.state.filteredArticles.map((article,i) =>{
                                     return(
                                         <Col key={i} xs={{span: 10, offset: 1}} md={{span: 6, offset: 0}} lg={3}>
-                                            <Produit_preview article={article} AddToPanier={this.props.AddToPanier} modalState={this.props.modalState}/>
+                                            <Produit_preview article={article} AddToPanier={this.props.AddToPanier}/>
                                         </Col>
                                     );
                                 })
@@ -131,6 +149,8 @@ class Produits_search extends Component{
                 </Row>
             </Container>
         );
+        
+        
     }
 }
 
