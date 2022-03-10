@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Card, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { strapi_host_url } from '../strapi';
 
-function Produit_preview(props){
+function ProduitPreview(props){
     let text_prix = props.article.attributes.prix - (props.article.attributes.prix/100 * props.article.attributes.reduction) + "€"; // prix après réduction
     if(props.article.attributes.reduction !== 0){
         text_prix += " au lieu de " + props.article.attributes.prix + "€ (-" + props.article.attributes.reduction + "%)"
@@ -29,4 +29,4 @@ function Produit_preview(props){
     );
 }
 
-export default Produit_preview;
+export default ProduitPreview;

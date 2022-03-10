@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Dropdown,} from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
 
-function Article_dropdown_panier(props){
+function ArticleDropdownPanier(props){
     let text_prix = props.article.attributes.prix - (props.article.attributes.prix/100 * props.article.attributes.reduction) + "€"; // prix après réduction
     if(props.article.attributes.reduction != 0){
         text_prix += " (" + props.article.attributes.prix + "€ avec " + props.article.attributes.reduction + "% de reduction)"
@@ -18,4 +18,4 @@ function Article_dropdown_panier(props){
     );   
 }
 
-export default Article_dropdown_panier
+export default ArticleDropdownPanier

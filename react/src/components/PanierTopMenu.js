@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Button, NavDropdown, Dropdown,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { BsFillBasketFill } from "react-icons/bs";
-import Article_dropdown_panier from './Article_dropdown_panier';
+import ArticleDropdownPanier from './ArticleDropdownPanier';
 
-class Panier_TopMenu extends Component{
+class PanierTopMenu extends Component{
     constructor(props) {
         super(props)
     }
@@ -18,7 +18,7 @@ class Panier_TopMenu extends Component{
                         return(
                             <div key={i}>
                                 <NavDropdown.Item>
-                                    <Article_dropdown_panier article={article} articleIndex={i} RemFromPanier={this.props.RemFromPanier}/>
+                                    <ArticleDropdownPanier article={article} articleIndex={i} RemFromPanier={this.props.RemFromPanier}/>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider/>
                             </div>
@@ -33,4 +33,4 @@ class Panier_TopMenu extends Component{
 }
 
 
-export default Panier_TopMenu;
+export default PanierTopMenu;

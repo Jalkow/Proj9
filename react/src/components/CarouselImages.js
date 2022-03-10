@@ -3,7 +3,7 @@ import { Col, Row, Carousel} from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
 
 
-function Carousel_images(props){
+function CarouselImages(props){
     return(
         <Carousel interval={null} className="images-carousel">
             {
@@ -12,7 +12,7 @@ function Carousel_images(props){
                   <Carousel.Item key={i}>
                     <Row className="justify-content-center">
                       <Col xs={8}>
-                        <img src={strapi_host_url + image.attributes.url} />
+                        <img src={strapi_host_url + image.attributes.url} alt="carousel content" />
                       </Col>
                     </Row>
                   </Carousel.Item>
@@ -23,4 +23,4 @@ function Carousel_images(props){
     );
 }
 
-export default Carousel_images
+export default CarouselImages

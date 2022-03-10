@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Row, Carousel} from 'react-bootstrap';
-import Marque_infos from './Marque_infos';
+import MarqueInfos from './MarqueInfos';
 
 
-function Carousel_marques(props){
+function CarouselMarques(props){
     return(
         <Carousel interval={null}>
             {
@@ -12,7 +12,7 @@ function Carousel_marques(props){
                   <Carousel.Item key={i}>
                     <Row className="justify-content-center">
                       <Col xs={8}>
-                        <Marque_infos marque={marque} />
+                        <MarqueInfos marque={marque} />
                       </Col>
                     </Row>
                   </Carousel.Item>
@@ -23,4 +23,4 @@ function Carousel_marques(props){
     );
 }
 
-export default Carousel_marques
+export default CarouselMarques

@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {Navbar, Button, Nav, Form, FormControl, NavDropdown, Dropdown} from 'react-bootstrap';
 import {
     Link,
-    useNavigate,
     Navigate
 } from 'react-router-dom';
 import logo from "../img/bibouroi_logo.jpg";
-import Panier_TopMenu from './Panier_TopMenu';
+import PanierTopMenu from './PanierTopMenu';
 
 
 class TopMenu extends Component{
@@ -52,7 +51,7 @@ class TopMenu extends Component{
                             <Dropdown.Item as={Link} to="/produits/habit_homme">Habits homme </Dropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Panier_TopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />
+                    <PanierTopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />
                     <Form className="d-flex" onSubmit={this.handleSearchSubmit}>
                         <FormControl type="search" name="search" value={this.state.search} onChange={(e) => this.handleChange(e)} placeholder="Search" className="me-2" aria-label="Search"/>
                         <Button as={Link} to={"/search/" + this.state.search} variant="outline-success">Search</Button>

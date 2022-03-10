@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Modal, Button} from 'react-bootstrap';
-import Carousel_articles from './components/Carousel_articles';
-import Carousel_marques from './components/Carousel_marques';
+import CarouselArticles from './components/CarouselArticles';
+import CarouselMarques from './components/CarouselMarques';
 import { strapi_host_url } from './strapi';
 
 class Home extends Component{
@@ -83,37 +83,26 @@ class Home extends Component{
     return (
       <Container fluid className="home_content-container">
         <Row className="justify-content-center">
-          <Modal show={this.props.modalState} onHide={this.props.closeModal}>
-            <Modal.Header closeButton>
-              <Modal.Title>Article ajouté</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>L'article a bien été ajouté à votre panier</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.props.closeModal}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
           <Col md={12} lg={4} className="carousel_container">
             <h2 className="accueil_subtitle">Nos articles les plus récents :</h2>
-            <Carousel_articles articles={this.state.latest_articles.data} AddToPanier={this.props.AddToPanier} />
+            <CarouselArticles articles={this.state.latest_articles.data} AddToPanier={this.props.AddToPanier} />
           </Col>
 
           <Col md={12} lg={4} className="carousel_container">
             <h2 className="accueil_subtitle">Nos meilleures promos :</h2>
-            <Carousel_articles articles={this.state.most_discounted_articles.data} AddToPanier={this.props.AddToPanier}/>
+            <CarouselArticles articles={this.state.most_discounted_articles.data} AddToPanier={this.props.AddToPanier}/>
           </Col>
         </Row>
         <Container>
           <Row className="justify-content-center">
           <Col md={12} lg={6} className="carousel_container">
             <h2 className="accueil_subtitle">Nos articles les plus achetés :</h2>
-            <Carousel_articles articles={this.state.most_bought_articles.data} AddToPanier={this.props.AddToPanier}/>
+            <CarouselArticles articles={this.state.most_bought_articles.data} AddToPanier={this.props.AddToPanier}/>
           </Col>
 
           <Col md={12} lg={6} className="carousel_container">
             <h2 className="accueil_subtitle">Marques disponibles :</h2>
-            <Carousel_marques marques={this.state.marques.data} />
+            <CarouselMarques marques={this.state.marques.data} />
           </Col>
         </Row>
         </Container>

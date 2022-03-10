@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { Col, Container, Row, Spinner, Button, Modal } from 'react-bootstrap';
+import { Col, Container, Row, Spinner, Button } from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
-import Carousel_images from './Carousel_images';
-import Marque_infos from './Marque_infos';
+import CarouselImages from './CarouselImages';
+import MarqueInfos from './MarqueInfos';
 
-class Produit_details extends Component{
+class ProduitDetails extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -83,17 +83,6 @@ class Produit_details extends Component{
                 <Container fluid>
                     <Row className="justify-content-center">
                         <Col xs={12} md={10} className="product-details-container">
-                            <Modal show={this.props.modalState} onHide={this.props.closeModal}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Article ajouté</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>L'article a bien été ajouté à votre panier</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={this.props.closeModal}>
-                                        Close
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
                             <Row>
                                 <Col xs={12} lg={6}>
                                     <h2 className="product-details-title">{this.state.article.attributes.name + " (acheté " + this.state.article.attributes.numb_time_bought + " fois)"}</h2>
@@ -105,13 +94,13 @@ class Produit_details extends Component{
                                             <h2 className="product-details-title">Marque :</h2>
                                         </Col>
                                         <Col xs={12} md={6}>
-                                            <Marque_infos marque={this.state.marque}/>
+                                            <MarqueInfos marque={this.state.marque}/>
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col xs={12} lg={6}>
                                     <h2 className="product-details-title">Aperçus de l'article</h2>
-                                    <Carousel_images images={this.state.article.attributes.details_images.data} />
+                                    <CarouselImages images={this.state.article.attributes.details_images.data} />
                                     <h3 className="product-details-infos">Description :</h3>
                                     <p class="product-details-description">{this.state.article.attributes.description}</p>
                                 </Col>
@@ -129,4 +118,4 @@ class Produit_details extends Component{
 }
 
 
-export default Produit_details
+export default ProduitDetails

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
 
-function Marque_infos(props){
+function MarqueInfos(props){
     return(
         <Card className="info-card">
             <Card.Img variant="top" src={strapi_host_url + props.marque.attributes.logo.data.attributes.url} />
@@ -15,4 +15,4 @@ function Marque_infos(props){
     );
 }
 
-export default Marque_infos;
+export default MarqueInfos;

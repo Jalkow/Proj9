@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Row, Carousel} from 'react-bootstrap';
-import Produit_preview from './Produit_preview';
+import ProduitPreview from './ProduitPreview';
 
 
-function Carousel_articles(props){
+function CarouselArticles(props){
     return(
         <Carousel interval={null}>
             {
@@ -12,7 +12,7 @@ function Carousel_articles(props){
                   <Carousel.Item key={i}>
                     <Row className="justify-content-center">
                       <Col xs={8}>
-                        <Produit_preview article={article} AddToPanier={props.AddToPanier} />
+                        <ProduitPreview article={article} AddToPanier={props.AddToPanier} />
                       </Col>
                     </Row>
                   </Carousel.Item>
@@ -23,4 +23,4 @@ function Carousel_articles(props){
     );
 }
 
-export default Carousel_articles
+export default CarouselArticles

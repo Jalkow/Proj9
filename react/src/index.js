@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import ReactDOM, { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import './index.css';
 import './style.css';
 import Home from './Home';
-import Produits from './components/Produits';
+import ProduitsCategory from './components/ProduitsCategory';
 import Commande from './components/Commande';
-import Produit_details from './components/Produit_details';
+import ProduitDetails from './components/ProduitDetails';
 import { BrowserRouter,
          Route,
          Routes,
          useParams,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TopMenu from './components/Top_menu';
+import TopMenu from './components/TopMenu';
 import Footer from './components/Footer';
-import Produits_search from './components/Produits_search';
+import ProduitsSearch from './components/ProduitsSearch';
+import { Button, Modal } from 'react-bootstrap';
 
 
 class Root extends Component{
@@ -59,14 +60,25 @@ class Root extends Component{
       <>
         <BrowserRouter>
           <TopMenu dropdown_content={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} RemFromPanier={this.RemFromPanier}/>
+          <Modal show={this.state.modalIsOpen} onHide={this.closeModal}>
+            <Modal.Header closeButton>
+                <Modal.Title>Article ajouté</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>L'article a bien été ajouté à votre panier</Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={this.closeModal}>
+                    Close
+                </Button>
+            </Modal.Footer>
+          </Modal>
           <Routes>
-            <Route exact path="/" element={<Home panier={this.state.panier} AddToPanier={this.AddToPanier} modalState={this.state.modalIsOpen} closeModal={this.closeModal} />} />
-            <Route exact path="/produits" element={<Produits AddToPanier={this.AddToPanier} modalState={this.state.modalIsOpen} closeModal={this.closeModal}/>} /> 
-            <Route exact path="/produits/:category" element={<this.Produits_category />} />
-            <Route exact path="/produit_details/:id" element={<Produit_details AddToPanier={this.AddToPanier} modalState={this.state.modalIsOpen} closeModal={this.closeModal}/>}/>
-            <Route exact path="/search" element={<Produits AddToPanier={this.AddToPanier} modalState={this.state.modalIsOpen} closeModal={this.closeModal}/>} /> 
+            <Route exact path="/" element={<Home panier={this.state.panier} AddToPanier={this.AddToPanier} />} /> 
+            <Route exact path="/produits" element={<ProduitsCategory AddToPanier={this.AddToPanier} />} />
+            <Route exact path="/produits/:category" element={<this.Produits_sendcategory />} />
+            <Route exact path="/produit_details/:id" element={<ProduitDetails AddToPanier={this.AddToPanier}/>}/>
+            <Route exact path="/search" element={<ProduitsCategory AddToPanier={this.AddToPanier} />} />
             <Route exact path="/search/:input" element={<this.Produits_sendsearch />} />
-            <Route exact path="/commande" element={<Commande panier={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} RemFromPanier={this.RemFromPanier} />} />
+            <Route exact path="/commande" element={<Commande panier={this.state.panier} total_prix_articles_panier={this.state.panier_total_price} RemFromPanier={this.RemFromPanier} ClearPanier={this.ClearPanier} />} />
           </Routes>
           <Footer />
         </BrowserRouter>
@@ -75,15 +87,15 @@ class Root extends Component{
     );
   }
 
-  Produits_category = () =>{
+  Produits_sendcategory = () =>{
     return(
-      <Produits AddToPanier={this.AddToPanier} category={useParams().category} modalState={this.state.modalIsOpen} closeModal={this.closeModal}/>
+      <ProduitsCategory AddToPanier={this.AddToPanier} category={useParams().category} />
     )
   }
 
   Produits_sendsearch = () =>{
     return(
-      <Produits_search AddToPanier={this.AddToPanier} search={useParams().input} modalState={this.state.modalIsOpen} closeModal={this.closeModal}/>
+      <ProduitsSearch AddToPanier={this.AddToPanier} search={useParams().input} />
     )
   }
 }

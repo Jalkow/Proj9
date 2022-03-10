@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Col, Container, Row, Form, Button, Modal } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 import { strapi_host_url } from '../strapi';
-import Article_commande from './Article_commande';
+import ArticleCommande from './ArticleCommande';
 
 class Commande extends Component{
     constructor(props) {
@@ -12,6 +13,7 @@ class Commande extends Component{
             email: "",
             address: "",
             modalIsOpen: false,
+            CommandPaid: false,
         }
     }
 
@@ -25,7 +27,13 @@ class Commande extends Component{
 
     openModal = () => this.setState({ modalIsOpen: true });
     
-    closeModal = () => this.setState({ modalIsOpen: false });
+    closeModal = () => {
+        this.props.ClearPanier();
+        this.setState({ 
+            modalIsOpen: false,
+            CommandPaid: true,
+        });
+    }
 
     updateTimeBought = async(article) =>{
         const url = strapi_host_url + "/api/articles/" + article.id;
@@ -79,6 +87,10 @@ class Commande extends Component{
     }
 
     render(){
+        if(this.state.CommandPaid){
+            return <Navigate to='/'/>;
+        }
+
         if(this.props.panier.length !== 0){
            return(
                 <Container fluid className="commande-content-container">
@@ -126,7 +138,7 @@ class Commande extends Component{
                                 this.props.panier.map((article,i) =>{
                                     return(
                                         <div>
-                                            <Article_commande key={i} article={article} articleIndex={i} RemFromPanier={this.props.RemFromPanier}/>
+                                            <ArticleCommande key={i} article={article} articleIndex={i} RemFromPanier={this.props.RemFromPanier}/>
                                         </div>
                                     );
                                 })
