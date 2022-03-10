@@ -16,12 +16,12 @@ class Panier_TopMenu extends Component{
                 {
                     this.props.content && this.props.content.map((article,i) =>{
                         return(
-                            <>
-                                <NavDropdown.Item key={i}>
+                            <div key={i}>
+                                <NavDropdown.Item>
                                     <Article_dropdown_panier article={article} articleIndex={i} RemFromPanier={this.props.RemFromPanier}/>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider/>
-                            </>
+                            </div>
                         );
                     })
                 }

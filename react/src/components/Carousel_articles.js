@@ -9,10 +9,10 @@ function Carousel_articles(props){
             {
               props.articles && props.articles.map((article,i) =>{
                 return(
-                  <Carousel.Item>
+                  <Carousel.Item key={i}>
                     <Row className="justify-content-center">
                       <Col xs={8}>
-                        <Produit_preview key={i} article={article} AddToPanier={props.AddToPanier} />
+                        <Produit_preview article={article} AddToPanier={props.AddToPanier} />
                       </Col>
                     </Row>
                   </Carousel.Item>

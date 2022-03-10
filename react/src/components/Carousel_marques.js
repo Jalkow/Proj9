@@ -9,10 +9,10 @@ function Carousel_marques(props){
             {
               props.marques && props.marques.map((marque,i) =>{
                 return(
-                  <Carousel.Item>
+                  <Carousel.Item key={i}>
                     <Row className="justify-content-center">
                       <Col xs={8}>
-                        <Marque_infos key={i} marque={marque} />
+                        <Marque_infos marque={marque} />
                       </Col>
                     </Row>
                   </Carousel.Item>

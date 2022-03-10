@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commandes",
+  "info": {
+    "singularName": "commande",
+    "pluralName": "commandes",
+    "displayName": "Commandes",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "clientName": {
+      "type": "string",
+      "required": true
+    },
+    "clientFamilyName": {
+      "type": "string",
+      "required": true
+    },
+    "clientEmail": {
+      "type": "string",
+      "required": true
+    },
+    "clientAddress": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Container, Row, Spinner, Button } from 'react-bootstrap';
+import { Col, Container, Row, Spinner, Button, Modal } from 'react-bootstrap';
+import { strapi_host_url } from '../strapi';
 import Carousel_images from './Carousel_images';
 import Marque_infos from './Marque_infos';
 
@@ -17,7 +18,7 @@ class Produit_details extends Component{
         const article_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
         //article
-        let url = 'http://localhost:8080/api/Articles?populate=*';
+        let url = strapi_host_url + "/api/Articles?populate=*";
         const qs = require('qs');
         let query = qs.stringify({
         filters: {
@@ -33,7 +34,7 @@ class Produit_details extends Component{
         const article = await response.json()
 
         //infos complètes sur la marque
-        url = "http://localhost:8080/api/Marques?populate=*"
+        url = strapi_host_url + "/api/Marques?populate=*";
         query = qs.stringify({
         filters:{
             id: {
@@ -50,7 +51,8 @@ class Produit_details extends Component{
         this.setState({
             article:article.data[0],
             marque:marque.data[0],
-            loading:false
+            loading:false,
+            modalIsOpen: false,
         })
     }
 
@@ -81,6 +83,17 @@ class Produit_details extends Component{
                 <Container fluid>
                     <Row className="justify-content-center">
                         <Col xs={12} md={10} className="product-details-container">
+                            <Modal show={this.props.modalState} onHide={this.props.closeModal}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Article ajouté</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>L'article a bien été ajouté à votre panier</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={this.props.closeModal}>
+                                        Close
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                             <Row>
                                 <Col xs={12} lg={6}>
                                     <h2 className="product-details-title">{this.state.article.attributes.name + " (acheté " + this.state.article.attributes.numb_time_bought + " fois)"}</h2>

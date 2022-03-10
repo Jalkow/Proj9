@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Dropdown,} from 'react-bootstrap';
+import { strapi_host_url } from '../strapi';
 
 function Article_dropdown_panier(props){
     let text_prix = props.article.attributes.prix - (props.article.attributes.prix/100 * props.article.attributes.reduction) + "€"; // prix après réduction
@@ -10,7 +11,7 @@ function Article_dropdown_panier(props){
         <>
             <Dropdown.ItemText>{"Nom : " + props.article.attributes.name}</Dropdown.ItemText>
             <Dropdown.ItemText>{"Prix : " + text_prix } </Dropdown.ItemText>
-            <img src={"http://localhost:8080" + props.article.attributes.preview_photo.data.attributes.url}></img>
+            <img src={strapi_host_url + props.article.attributes.preview_photo.data.attributes.url}></img>
             <br></br>
             <Button variant="danger" onClick={() => props.RemFromPanier(props.articleIndex)} >Supprimer du panier</Button>
         </>

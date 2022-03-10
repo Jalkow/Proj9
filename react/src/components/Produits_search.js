@@ -3,34 +3,55 @@ import { Spinner, Container, Col, Row, Button, Modal } from 'react-bootstrap';
 import { strapi_host_url } from '../strapi';
 import Produit_preview from './Produit_preview';
 
- class Produits extends Component{
-    constructor(props) {
-      super(props)
-      this.state={
-            filteredArticles:[],
-            articles:[],
-            loading:true,
-      }
-    }
 
-    setArticlesToDisplay = async(category) =>{
+class Produits_search extends Component{
+    constructor(props) {
+        super(props)
+        this.state={
+              filteredArticles:[],
+              articles:[],
+              loading:true,
+        }
+    }    
+
+    setArticlesToDisplay = async(search) =>{
         let url = strapi_host_url + "/api/Articles?populate=*";
-        if (this.props.category){
+        if (this.props.search !== ""){
             const qs = require('qs');
             const query = qs.stringify({
-            filters: {
-                category: {
-                $eq: category
+                filters: {
+                    $or: [
+                        {
+                            name: {
+                                $containsi: search,
+                            },
+                        },
+                        {
+                            marque:{
+                                name: {
+                                    $containsi: search,
+                                },
+                            },
+                        },
+                        {
+                            marque:{
+                                nationalite: {
+                                    $containsi: search,
+                                },
+                            },
+                        },
+                    ],
                 },
-            },
             }, {
-            encodeValuesOnly: true,
+                encodeValuesOnly: true,
             });
             url += '&' + query;
         } 
+        console.log(search)
 
         const response = await fetch(url, {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
         const articles = await response.json()
+        console.log(articles)
         this.setState({
           articles:articles,
           filteredArticles:articles.data,
@@ -38,39 +59,19 @@ import Produit_preview from './Produit_preview';
         });
     }
 
-    filterArticles = (value, condition) =>{
-        if(condition === "BIGGERPRICE"){
-            this.setState({
-                filteredArticles: this.state.articles.data.filter(article => (article.attributes.prix - (article.attributes.prix/100 * article.attributes.reduction)) > value),
-            })
-        }
-        else if(condition === "SMALLERPRICE"){
-            this.setState({
-                filteredArticles: this.state.articles.data.filter(article => (article.attributes.prix - (article.attributes.prix/100 * article.attributes.reduction)) < value),
-            })
-        }
-
-        else if(condition === "BIGGERREDUCTION"){
-            this.setState({
-                filteredArticles: this.state.articles.data.filter(article => article.attributes.reduction > value),
-            })
-        }
-    }
-
     async componentDidMount () {
-        this.setArticlesToDisplay(this.props.category);
+        this.setArticlesToDisplay(this.props.search);
     }
 
-    
     async componentWillReceiveProps (nextProps) {
-        if(nextProps.category === this.props.category){
+        if(nextProps.search === this.props.search){
             return;
         }
-        this.setArticlesToDisplay(nextProps.category);
+        this.setArticlesToDisplay(nextProps.search);
     }
     
+
     render() {
-            
         if(this.state.loading) {
             return(
                 <Container fluid>
@@ -120,7 +121,7 @@ import Produit_preview from './Produit_preview';
                                 this.state.filteredArticles && this.state.filteredArticles.map((article,i) =>{
                                     return(
                                         <Col key={i} xs={{span: 10, offset: 1}} md={{span: 6, offset: 0}} lg={3}>
-                                            <Produit_preview article={article} AddToPanier={this.props.AddToPanier}/>
+                                            <Produit_preview article={article} AddToPanier={this.props.AddToPanier} modalState={this.props.modalState}/>
                                         </Col>
                                     );
                                 })
@@ -130,10 +131,8 @@ import Produit_preview from './Produit_preview';
                 </Row>
             </Container>
         );
-        
-        
     }
 }
 
-export default Produits;
 
+export default Produits_search

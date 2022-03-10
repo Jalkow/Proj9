@@ -93,6 +93,16 @@
   text-align: center;
 }
 
+.products-filters-container h2{
+  font-weight: bold;
+  margin-top: 3vh;
+}
+.products-filters-container .btn{
+  font-weight: bold !important;
+  font-size: 2rem;
+  margin-top: 2vh;
+}
+
 .products-list-container{
   background-color: #282c34;
   padding-bottom: 5vh;
@@ -159,7 +169,7 @@
   width: 15vw !important;
 }
 
-.commande-articles-container{
+.commande-articles-container, .commande-form-container{
   text-align: center;
   padding-bottom: 5vh;
 }
@@ -172,6 +182,28 @@
 
 .commande-article-img{
   max-height: 30vh;
+}
+
+.commande-title{
+  font-size: 3rem;
+  margin-top: 10vh;
+}
+
+.empty-commande-text{
+  font-size: 5rem;
+  text-align: center;
+  color: red;
+  margin-top: 50vh;
+  margin-bottom: 50vh;
+}
+
+.commande-content-container form{
+  margin-top: 5vh;
+}
+
+.form-input{
+  text-align: start !important;
+  margin-bottom: 4vh;
 }
 
 @media screen and (max-width: 992px){

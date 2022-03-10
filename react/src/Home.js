@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Carousel} from 'react-bootstrap';
+import { Col, Container, Row, Modal, Button} from 'react-bootstrap';
 import Carousel_articles from './components/Carousel_articles';
 import Carousel_marques from './components/Carousel_marques';
-import Marque_infos from './components/Marque_infos';
-import Produit_preview from './components/Produit_preview';
+import { strapi_host_url } from './strapi';
 
 class Home extends Component{
 
@@ -18,7 +17,7 @@ class Home extends Component{
   }
 
   async componentDidMount(){
-    const basicurl = 'http://localhost:8080/api/Articles?populate=*';
+    const basicurl = strapi_host_url + "/api/Articles?populate=*";
 
     const qs = require('qs');
 
@@ -68,7 +67,7 @@ class Home extends Component{
       }}, {
         encodeValuesOnly: true,
     });
-    url_with_filters = "http://localhost:8080/api/Marques?populate=*" + "&" + query;
+    url_with_filters = strapi_host_url + "/api/Marques?populate=*" + "&" + query;
     const response_marques = await fetch(url_with_filters, {method: 'GET', headers: {'Accept': 'application/json', 'Content-Type':'application/json'}})
     const marques = await response_marques.json()
 
@@ -81,10 +80,20 @@ class Home extends Component{
   }
 
   render() {
-    console.log(this.state.marques)
     return (
       <Container fluid className="home_content-container">
         <Row className="justify-content-center">
+          <Modal show={this.props.modalState} onHide={this.props.closeModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Article ajouté</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>L'article a bien été ajouté à votre panier</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.props.closeModal}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <Col md={12} lg={4} className="carousel_container">
             <h2 className="accueil_subtitle">Nos articles les plus récents :</h2>
             <Carousel_articles articles={this.state.latest_articles.data} AddToPanier={this.props.AddToPanier} />
