@@ -6,7 +6,7 @@ class ArticlesLoading extends Component{
         return(
             <Container fluid>
                 <Row id="products-content">
-                    <Col xs={12} md={2} className="products-filters-container">
+                    <Col xs={12} md={4} className="products-filters-container">
                     </Col>
                     <Col xs={12} md={8} className="products-list-container" >
                         <Container fluid>

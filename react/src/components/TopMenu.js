@@ -49,6 +49,12 @@ class TopMenu extends Component{
                             <Dropdown.Item as={Link} to="/produits/broderie">Broderies</Dropdown.Item>
                             <NavDropdown.Divider/>
                             <Dropdown.Item as={Link} to="/produits/habit_homme">Habits homme </Dropdown.Item>
+                            <NavDropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/produits/habit_femme">Habits femme </Dropdown.Item>
+                            <NavDropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/produits/habit_garcon">Habits garçon </Dropdown.Item>
+                            <NavDropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/produits/habit_fille">Habits fille </Dropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <PanierTopMenu content={this.props.dropdown_content} total_prix_articles={this.props.total_prix_articles_panier} RemFromPanier={this.props.RemFromPanier} />

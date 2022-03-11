@@ -51,7 +51,7 @@ import ProduitPreview from './ProduitPreview';
         return(
             <Container fluid>
                 <Row id="products-content">
-                    <Col xs={12} md={2} className="products-filters-container">
+                    <Col xs={12} lg={2} className="products-filters-container">
                         <h2>Filtres :</h2>
                         <Button className="filter-button" onClick={() => this.setState({filteredArticles:this.props.articles})} variant="danger">Annuler filtre</Button>
                         <Button className="filter-button" onClick={() => this.filterArticles(20, "BIGGERPRICE")} variant="light">Prix supérieur à 20€</Button>
@@ -59,7 +59,7 @@ import ProduitPreview from './ProduitPreview';
                         <Button className="filter-button" onClick={() => this.filterArticles(50, "BIGGERREDUCTION")} variant="light">Réduction de plus de 50%</Button>
                         
                     </Col>
-                    <Col xs={12} md={8} className="products-list-container" >
+                    <Col xs={12} lg={8} className="products-list-container" >
                         <Row className="justify-content-md-center">
                             {
                                 this.state.filteredArticles && this.state.filteredArticles.map((article,i) =>{
